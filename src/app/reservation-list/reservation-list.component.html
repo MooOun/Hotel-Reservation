@@ -1,0 +1,41 @@
+<app-home></app-home>
+
+<h3 class="mt-5 mb-3">รายการข้อมูลการองห้องพัก</h3>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ชื่อผู้เข้าพัก</th>
+            <th>อีเมลผู้เข้าพัก</th>
+            <th>หมายเลขห้องพัก</th>
+            <th>วันที่เช็คอิน</th>
+            <th>วันที่เช็คเอิาท์</th>
+            <th>จัดการ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reservations of reservations">
+            <td>{{reservations.guestName}}</td>
+            <td>{{reservations.guestEmail}}</td>
+            <td>{{reservations.roomNumber}}</td>
+            <td>{{reservations.checkInDate | date: 'dd/MMM/yyyy'}}</td>
+            <td>{{reservations.checkOutDate | date: 'dd/MMM/yyyy'}}</td>
+
+            <td>
+                <button class="btn btn-sm btn-danger mx-1"
+                    (click)="deleteReservation(reservations.id)">ลบการจอง</button>
+                <button class="btn btn-sm btn-secondary mx-1"
+                    [routerLink]="['/edit' , reservations.id]">แก้ไขการจอง</button>
+            </td>
+
+
+
+        </tr>
+    </tbody>
+</table>
+
+
+<ng-template #noReservation>
+    <p> ยังไม่มีการจอง.</p>
+</ng-template>
